@@ -5,14 +5,35 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "nlpcmd-ai"
 version = "0.1.0"
-description = "A true NLP-powered command line assistant using AI - works on Windows, Linux, and macOS"
+description = "AI-powered CLI assistant that understands natural language - transform plain English into system commands on Windows, Linux, and macOS"
 readme = "README.md"
 requires-python = ">=3.8"
 license = {text = "MIT"}
 authors = [
     {name = "Avik", email = "avikgreat@gmail.com"}
 ]
-keywords = ["cli", "nlp", "ai", "command-line", "assistant", "chatgpt", "llm", "cross-platform"]
+maintainers = [
+    {name = "Avik", email = "avikgreat@gmail.com"}
+]
+keywords = [
+    "cli", 
+    "nlp", 
+    "ai", 
+    "command-line", 
+    "assistant", 
+    "natural-language",
+    "chatgpt", 
+    "llm", 
+    "cross-platform",
+    "terminal",
+    "shell",
+    "automation",
+    "openai",
+    "anthropic",
+    "ollama",
+    "gpt-4",
+    "claude"
+]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -21,6 +42,8 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Operating System :: Microsoft :: Windows",
+    "Operating System :: Microsoft :: Windows :: Windows 10",
+    "Operating System :: Microsoft :: Windows :: Windows 11",
     "Operating System :: POSIX :: Linux",
     "Operating System :: MacOS",
     "Programming Language :: Python :: 3",
@@ -29,11 +52,15 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: System :: Shells",
     "Topic :: System :: System Shells",
+    "Topic :: System :: Systems Administration",
     "Topic :: Utilities",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "Environment :: Console",
+    "Natural Language :: English",
 ]
 
 dependencies = [
@@ -45,6 +72,7 @@ dependencies = [
     "pydantic>=2.0.0",
     "requests>=2.31.0",
     "pyyaml>=6.0.0",
+    "psutil>=5.9.0",
 ]
 
 [project.optional-dependencies]
@@ -59,7 +87,6 @@ dev = [
 ]
 local = [
     "ollama>=0.1.0",
-    "langchain>=0.1.0",
 ]
 all = [
     "pytest>=7.0.0",
@@ -70,18 +97,20 @@ all = [
     "build>=0.10.0",
     "twine>=4.0.0",
     "ollama>=0.1.0",
-    "langchain>=0.1.0",
 ]
 
 [project.scripts]
 nlpai = "nlpcmd_ai.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/yourusername/nlpcmd-ai"
-Documentation = "https://github.com/yourusername/nlpcmd-ai#readme"
-Repository = "https://github.com/yourusername/nlpcmd-ai"
-Issues = "https://github.com/yourusername/nlpcmd-ai/issues"
-Changelog = "https://github.com/yourusername/nlpcmd-ai/releases"
+Homepage = "https://github.com/Avikg/nlp_terminal_cmd"
+Documentation = "https://github.com/Avikg/nlp_terminal_cmd#readme"
+Repository = "https://github.com/Avikg/nlp_terminal_cmd"
+"Bug Tracker" = "https://github.com/Avikg/nlp_terminal_cmd/issues"
+Issues = "https://github.com/Avikg/nlp_terminal_cmd/issues"
+Changelog = "https://github.com/Avikg/nlp_terminal_cmd/releases"
+"Source Code" = "https://github.com/Avikg/nlp_terminal_cmd"
+Download = "https://pypi.org/project/nlpcmd-ai/"
 
 [tool.setuptools]
 packages = ["nlpcmd_ai"]
