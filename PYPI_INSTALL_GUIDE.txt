@@ -1,0 +1,314 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║              HOW TO PUBLISH TO PyPI & USE ON OTHER COMPUTERS                ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📦 PART 1: PUBLISHING TO PyPI (One-Time Setup)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔧 STEP 1: Create PyPI Account
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Go to: https://pypi.org/account/register/
+2. Create account
+3. Verify email
+4. Enable 2FA (Two-Factor Authentication) - REQUIRED
+
+5. Create API Token:
+   - Go to: https://pypi.org/manage/account/token/
+   - Click "Add API token"
+   - Token name: "nlpcmd-ai-upload"
+   - Scope: "Entire account" (or specific to project)
+   - Copy the token (starts with pypi-...)
+   - SAVE IT! You won't see it again!
+
+
+🔧 STEP 2: Install Build Tools
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+In your project directory (C:\Development\nlpcmd):
+
+pip install --upgrade build twine
+
+
+🔧 STEP 3: Update Package Metadata
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Edit pyproject.toml:
+
+1. Choose a unique name (check if available on PyPI first)
+   - Current: name = "nlpcmd-ai"
+   - You might need: name = "nlpcmd-ai-yourname" or "yourname-nlpcmd"
+
+2. Update version (start with 0.1.0)
+   version = "0.1.0"
+
+3. Add your info:
+   authors = [{name = "Your Name", email = "your.email@example.com"}]
+
+4. Update description if needed
+
+
+🔧 STEP 4: Build the Package
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+cd C:\Development\nlpcmd
+
+# Clean old builds
+rmdir /s /q dist
+rmdir /s /q build
+rmdir /s /q *.egg-info
+
+# Build
+python -m build
+
+This creates:
+  dist/nlpcmd_ai-0.1.0.tar.gz
+  dist/nlpcmd_ai-0.1.0-py3-none-any.whl
+
+
+🔧 STEP 5: Test on TestPyPI First (Recommended)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TestPyPI is a practice server - safe to test!
+
+1. Create TestPyPI account: https://test.pypi.org/account/register/
+2. Get TestPyPI token: https://test.pypi.org/manage/account/token/
+
+3. Upload to TestPyPI:
+   python -m twine upload --repository testpypi dist/*
+
+4. Enter credentials:
+   Username: __token__
+   Password: pypi-YOUR_TEST_TOKEN_HERE
+
+5. Test installation:
+   pip install --index-url https://test.pypi.org/simple/ nlpcmd-ai
+
+
+🔧 STEP 6: Publish to Real PyPI
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Once testing is successful:
+
+python -m twine upload dist/*
+
+Enter credentials:
+  Username: __token__
+  Password: pypi-YOUR_REAL_TOKEN_HERE
+
+✅ Done! Your package is now on PyPI!
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🌍 PART 2: USING ON OTHER COMPUTERS (After Publishing to PyPI)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+On ANY computer (Windows/Linux/macOS):
+
+🔧 STEP 1: Install Python
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Download from: https://python.org
+Requires: Python 3.8 or higher
+
+
+🔧 STEP 2: Install from PyPI (ONE COMMAND!)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+pip install nlpcmd-ai
+
+That's it! ✅
+
+
+🔧 STEP 3: Setup Configuration
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+OPTION A: Use with Ollama (FREE, Local, No API Key)
+────────────────────────────────────────────────────
+
+1. Install Ollama: https://ollama.ai
+2. Download model:
+   ollama pull llama3.2
+
+3. Create .env file:
+   Windows: notepad .env
+   Linux/Mac: nano .env
+
+4. Add this:
+   NLP_PROVIDER=ollama
+   OLLAMA_MODEL=llama3.2
+   REQUIRE_CONFIRMATION=false
+
+5. Use it:
+   python -m nlpcmd_ai.cli "what is my ip"
+
+
+OPTION B: Use with OpenAI (Paid, Requires API Key)
+────────────────────────────────────────────────────
+
+1. Get API key: https://platform.openai.com/api-keys
+
+2. Create .env file:
+   NLP_PROVIDER=openai
+   OPENAI_API_KEY=sk-proj-YOUR_KEY_HERE
+   REQUIRE_CONFIRMATION=false
+
+3. Use it:
+   python -m nlpcmd_ai.cli "what is my ip"
+
+
+🔧 STEP 4: Use the Tool
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# One-off commands
+python -m nlpcmd_ai.cli "what is my ip"
+python -m nlpcmd_ai.cli "show disk usage"
+python -m nlpcmd_ai.cli "how much memory do I have"
+
+# Interactive mode
+python -m nlpcmd_ai.cli -i
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚀 PART 3: EASIER USAGE (Optional Setup for Other Computers)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔧 WINDOWS: Create nlpai.bat
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Create file: C:\Windows\nlpai.bat (requires admin) OR put in your user folder
+
+@echo off
+python -m nlpcmd_ai.cli %*
+
+Then use:
+nlpai "what is my ip"
+nlpai -i
+
+
+🔧 LINUX/MAC: Create alias
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Add to ~/.bashrc or ~/.zshrc:
+
+alias nlpai='python -m nlpcmd_ai.cli'
+
+Then:
+source ~/.bashrc  # or source ~/.zshrc
+
+Use:
+nlpai "what is my ip"
+nlpai -i
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📋 COMPLETE EXAMPLE: DEPLOYING TO 3 COMPUTERS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+COMPUTER 1 (Your Dev Machine - Windows):
+─────────────────────────────────────────
+
+1. You already have it developed
+2. Publish to PyPI (Steps in Part 1)
+
+
+COMPUTER 2 (Friend's Windows Laptop):
+──────────────────────────────────────
+
+# Install
+pip install nlpcmd-ai
+
+# Install Ollama
+Download from https://ollama.ai
+ollama pull llama3.2
+
+# Setup
+echo NLP_PROVIDER=ollama > .env
+echo OLLAMA_MODEL=llama3.2 >> .env
+
+# Use
+python -m nlpcmd_ai.cli "what is my ip"
+
+
+COMPUTER 3 (Linux Server):
+──────────────────────────
+
+# Install
+pip install nlpcmd-ai
+
+# Install Ollama
+curl https://ollama.ai/install.sh | sh
+ollama pull llama3.2
+
+# Setup
+cat > .env << EOF
+NLP_PROVIDER=ollama
+OLLAMA_MODEL=llama3.2
+EOF
+
+# Use
+python -m nlpcmd_ai.cli "show disk usage"
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔄 UPDATING YOUR PACKAGE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+When you make changes:
+
+1. Update version in pyproject.toml:
+   version = "0.1.1"  # or 0.2.0, etc.
+
+2. Rebuild:
+   rmdir /s /q dist
+   python -m build
+
+3. Upload:
+   python -m twine upload dist/*
+
+4. Users update:
+   pip install --upgrade nlpcmd-ai
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️ IMPORTANT NOTES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Package names on PyPI are permanent - choose wisely!
+2. You cannot delete packages, only "yank" versions
+3. Test on TestPyPI first!
+4. Once published, anyone can install it
+5. Include a good README.md - people will see it on PyPI
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 QUICK REFERENCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PUBLISH (One time):
+  pip install build twine
+  python -m build
+  python -m twine upload dist/*
+
+INSTALL ON OTHER COMPUTER:
+  pip install nlpcmd-ai
+
+SETUP:
+  ollama pull llama3.2
+  Create .env with NLP_PROVIDER=ollama
+
+USE:
+  python -m nlpcmd_ai.cli "your command"
+  python -m nlpcmd_ai.cli -i
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📚 MORE INFO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+See: PYPI_PUBLISHING.md for detailed guide
+PyPI: https://pypi.org
+TestPyPI: https://test.pypi.org
