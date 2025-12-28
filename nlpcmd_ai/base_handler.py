@@ -176,6 +176,7 @@ class HandlerRegistry:
             NetworkHandler,
             SystemInfoHandler,
             ProcessHandler,
+            HelpHandler,
             DevelopmentHandler
         )
         
@@ -183,6 +184,7 @@ class HandlerRegistry:
         self.register(NetworkHandler())
         self.register(SystemInfoHandler())
         self.register(ProcessHandler())
+        self.register(HelpHandler())
         self.register(DevelopmentHandler())
     
     def load_custom_handlers(self, handler_dir: str):

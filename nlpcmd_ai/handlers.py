@@ -57,7 +57,9 @@ class NetworkHandler(BaseHandler):
         # Handle special cases with Python instead of shell commands
         if action in ["get_ip", "get_ip_address", "get_ip_info", "ip", "ip_address", "show_ip"]:
             return self._get_ip_address(dry_run)
-        elif action in ["check_port", "port_check"]:
+        elif action in ["get_mac", "get_mac_address", "mac", "mac_address", "show_mac"]:
+            return self._get_mac_address(dry_run)
+        elif action in ["check_port", "port_check", "check_port_status", "port_status", "is_port_open"]:
             return self._check_port(parameters, dry_run)
         elif action in ["http_request", "make_request"]:
             return self._http_request(parameters, dry_run)
@@ -70,7 +72,8 @@ class NetworkHandler(BaseHandler):
                 command=command
             )
         
-        return self.run_command(command)
+        # Network commands like ping, tracert need longer timeout
+        return self.run_command(command, timeout=120)
     
     def _get_ip_address(self, dry_run: bool) -> CommandResult:
         """Get IP addresses"""
@@ -104,10 +107,62 @@ class NetworkHandler(BaseHandler):
                 error=f"Failed to get IP: {str(e)}"
             )
     
+    def _get_mac_address(self, dry_run: bool) -> CommandResult:
+        """Get MAC address of network interfaces"""
+        if dry_run:
+            return CommandResult(
+                success=True,
+                output="[DRY RUN] Would fetch MAC addresses"
+            )
+        
+        try:
+            import uuid
+            import psutil
+            
+            output = "Network Interface MAC Addresses:\n\n"
+            
+            # Get all network interfaces
+            interfaces = psutil.net_if_addrs()
+            
+            for interface_name, addresses in interfaces.items():
+                for addr in addresses:
+                    # AF_LINK (17 on Unix, varies on Windows) or check for MAC format
+                    if hasattr(socket, 'AF_LINK') and addr.family == socket.AF_LINK:
+                        mac = addr.address
+                        output += f"{interface_name}: {mac}\n"
+                    elif '-' in str(addr.address) and len(addr.address) == 17:
+                        # Windows format: XX-XX-XX-XX-XX-XX
+                        output += f"{interface_name}: {addr.address}\n"
+            
+            # If no MAC found via psutil, use uuid method as fallback
+            if output == "Network Interface MAC Addresses:\n\n":
+                mac = ':'.join(['{:02x}'.format((uuid.getnode() >> elements) & 0xff) 
+                               for elements in range(0,2*6,2)][::-1])
+                output += f"Primary Interface: {mac}\n"
+            
+            return CommandResult(success=True, output=output.strip())
+            
+        except Exception as e:
+            return CommandResult(
+                success=False,
+                output="",
+                error=f"Failed to get MAC address: {str(e)}"
+            )
+    
     def _check_port(self, parameters: Dict, dry_run: bool) -> CommandResult:
         """Check if a port is open"""
         host = parameters.get("host", "localhost")
         port = parameters.get("port")
+        
+        # Try to extract port from various parameter keys
+        if not port:
+            port = parameters.get("port_number")
+        if not port:
+            # Try to find a number in the parameters
+            for key, value in parameters.items():
+                if isinstance(value, (int, str)) and str(value).isdigit():
+                    port = value
+                    break
         
         if not port:
             return CommandResult(
@@ -129,9 +184,9 @@ class NetworkHandler(BaseHandler):
             sock.close()
             
             if result == 0:
-                output = f"Port {port} is OPEN on {host}"
+                output = f"✅ Port {port} is OPEN on {host}"
             else:
-                output = f"Port {port} is CLOSED on {host}"
+                output = f"❌ Port {port} is CLOSED on {host}"
             
             return CommandResult(success=True, output=output)
             
@@ -415,6 +470,84 @@ class ProcessHandler(BaseHandler):
         
         # Process commands are sensitive, always require confirmation
         return self.run_command(command)
+
+
+class HelpHandler(BaseHandler):
+    """Handler for help and capability queries"""
+    
+    def can_handle(self, category: str, action: str) -> bool:
+        return category == "help"
+    
+    def execute(self, command: str, parameters: Dict, dry_run: bool = False) -> CommandResult:
+        """Show help information"""
+        
+        # Check if this is a conversational query redirected to help
+        action = parameters.get("action", "").lower()
+        if action in ["inform", "greet", "chat", "conversation"]:
+            response = """
+👋 Hi! I'm a command-line tool, not a chatbot.
+
+I can help you with system commands like:
+  • "what is my ip" - Network information
+  • "show disk usage" - System information  
+  • "list files in C:" - File operations
+  • "who am I" - User information
+
+Type "help" to see all available commands!
+"""
+            return CommandResult(success=True, output=response.strip())
+        
+        # Regular help content
+        help_text = """
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                         nlpcmd-ai - What I Can Do                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+I'm an AI-powered CLI assistant that understands natural language!
+Just ask me what you want in plain English.
+
+🌐 NETWORK COMMANDS:
+   • "what is my ip" - Show local & public IP addresses
+   • "show mac address" - Display MAC addresses
+   • "is port 8080 open" - Check if a port is available
+   • "ping google.com" - Test connectivity
+
+💻 SYSTEM INFORMATION:
+   • "what's my CPU usage" - Show CPU load and speed
+   • "how much memory do I have" - RAM usage and availability
+   • "show disk usage" - Disk space information
+   • "how long has my computer been running" - System uptime
+   • "who am I" - Current user and hostname
+
+📁 FILE OPERATIONS:
+   • "list all python files" - Find specific file types
+   • "find files larger than 10MB" - Search by size
+   • "show directory structure" - Tree view of folders
+   • "show folders in C:" - List C: drive folders
+   • "folder structure" - Current directory tree
+
+⚙️ PROCESS MANAGEMENT:
+   • "show running processes" - List all processes
+   • "is python running" - Find specific processes
+
+🛠️ DEVELOPMENT:
+   • "show git status" - Git commands
+   • "list docker containers" - Docker operations
+
+💡 TIPS:
+   • Use interactive mode: python -m nlpcmd_ai.cli -i
+   • Auto-confirm commands: python -m nlpcmd_ai.cli --yes "command"
+   • Test without executing: python -m nlpcmd_ai.cli --dry-run "command"
+   
+📚 MORE INFO:
+   • Full command list: See SUPPORTED_COMMANDS.txt
+   • Documentation: https://github.com/Avikg/nlp_terminal_cmd
+   • PyPI: https://pypi.org/project/nlpcmd-ai/
+
+Just ask naturally! I'll understand and help you. 🚀
+"""
+        
+        return CommandResult(success=True, output=help_text.strip())
 
 
 class DevelopmentHandler(BaseHandler):

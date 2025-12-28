@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nlpcmd-ai"
-version = "0.1.2"
+version = "0.1.3"
 description = "AI-powered CLI assistant that understands natural language - transform plain English into system commands on Windows, Linux, and macOS"
 readme = "README.md"
 requires-python = ">=3.8"
