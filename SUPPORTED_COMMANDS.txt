@@ -1,0 +1,407 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║                    nlpcmd-ai - SUPPORTED COMMANDS                            ║
+║                           Version 0.1.3                                      ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+This document lists all commands and queries supported by nlpcmd-ai.
+Just ask naturally - the AI will understand variations!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🌐 NETWORK COMMANDS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+IP ADDRESS INFORMATION:
+  ✓ "what is my ip"
+  ✓ "show my ip address"
+  ✓ "ip?"
+  ✓ "get ip"
+  ✓ "what is my local ip"
+  ✓ "show public ip"
+
+MAC ADDRESS INFORMATION:
+  ✓ "show mac address"
+  ✓ "what is my mac address"
+  ✓ "mac?"
+  ✓ "get mac"
+  ✓ "show network mac"
+
+PORT CHECKING:
+  ✓ "is port 8080 open"
+  ✓ "check port 3000"
+  ✓ "port 80 status"
+  ✓ "is port 22 available"
+  ✓ "check if port 443 is open"
+
+NETWORK DIAGNOSTICS:
+  ✓ "ping google.com"
+  ✓ "ping 8.8.8.8"
+  ✓ "trace yahoo.com"
+  ✓ "traceroute google.com"
+  ✓ "nslookup google.com"
+  ✓ "test connection to google.com"
+
+NETWORK CONFIGURATION:
+  ✓ "show network interfaces"
+  ✓ "ipconfig"
+  ✓ "ifconfig"
+  ✓ "show network settings"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💻 SYSTEM INFORMATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CPU INFORMATION:
+  ✓ "what's my CPU usage"
+  ✓ "show cpu"
+  ✓ "cpu usage"
+  ✓ "processor info"
+  ✓ "how many cores do I have"
+  ✓ "cpu speed"
+
+MEMORY INFORMATION:
+  ✓ "how much memory do I have"
+  ✓ "show ram"
+  ✓ "memory usage"
+  ✓ "how much ram"
+  ✓ "show memory info"
+  ✓ "available memory"
+
+DISK INFORMATION:
+  ✓ "show disk usage"
+  ✓ "disk space"
+  ✓ "how much disk space"
+  ✓ "show drives"
+  ✓ "disk info"
+  ✓ "storage information"
+
+SYSTEM UPTIME:
+  ✓ "how long has my computer been running"
+  ✓ "uptime"
+  ✓ "system uptime"
+  ✓ "how long running"
+  ✓ "when did system start"
+
+USER INFORMATION:
+  ✓ "who am I"
+  ✓ "who I"
+  ✓ "current user"
+  ✓ "username"
+  ✓ "what is my username"
+  ✓ "show user info"
+  ✓ "hostname"
+
+SYSTEM DETAILS:
+  ✓ "what OS am I running"
+  ✓ "system information"
+  ✓ "show system info"
+  ✓ "operating system"
+  ✓ "windows version"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📁 FILE & DIRECTORY OPERATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+LISTING FILES:
+  ✓ "list files"
+  ✓ "show files"
+  ✓ "list all files"
+  ✓ "show files in current directory"
+  ✓ "list python files"
+  ✓ "show all .txt files"
+
+LISTING DIRECTORIES:
+  ✓ "show folders"
+  ✓ "list directories"
+  ✓ "show folders in C:"
+  ✓ "list directories in D:"
+  ✓ "show folders in /home"
+
+DIRECTORY STRUCTURE:
+  ✓ "folder structure"
+  ✓ "show directory tree"
+  ✓ "tree"
+  ✓ "show current folder"
+  ✓ "list current directory"
+  ✓ "what's here"
+
+FINDING FILES:
+  ✓ "find a.txt"
+  ✓ "where is config.json"
+  ✓ "locate settings.ini"
+  ✓ "search for *.py files"
+  ✓ "find all python files"
+  ✓ "where is the file named test.txt"
+
+FILE SEARCH BY SIZE:
+  ✓ "find files larger than 10MB"
+  ✓ "find files smaller than 1KB"
+  ✓ "show large files"
+  ✓ "find big files"
+
+FILE SEARCH BY DATE:
+  ✓ "find files modified today"
+  ✓ "show recent files"
+  ✓ "files created this week"
+  ✓ "find old files"
+
+DIRECTORY NAVIGATION:
+  ✓ "show contents of C:"
+  ✓ "list files in C:\Users"
+  ✓ "what's in C drive"
+  ✓ "show C: drive folders"
+
+FILE INFORMATION:
+  ✓ "file size of document.pdf"
+  ✓ "show file details"
+  ✓ "file properties"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚙️ PROCESS MANAGEMENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+LISTING PROCESSES:
+  ✓ "show running processes"
+  ✓ "list processes"
+  ✓ "show all processes"
+  ✓ "tasklist"
+  ✓ "ps"
+
+FINDING PROCESSES:
+  ✓ "is python running"
+  ✓ "find chrome process"
+  ✓ "is node running"
+  ✓ "show python processes"
+
+PROCESS INFORMATION:
+  ✓ "show process details"
+  ✓ "process info"
+  ✓ "top processes by CPU"
+  ✓ "top processes by memory"
+
+PROCESS CONTROL (Requires Confirmation):
+  ⚠ "kill python process"
+  ⚠ "stop chrome"
+  ⚠ "end task"
+  ⚠ "terminate process 1234"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🛠️ DEVELOPMENT TOOLS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+GIT OPERATIONS:
+  ✓ "show git status"
+  ✓ "git status"
+  ✓ "show git log"
+  ✓ "git branches"
+  ✓ "current git branch"
+  ✓ "show uncommitted changes"
+
+DOCKER COMMANDS:
+  ✓ "list docker containers"
+  ✓ "show running containers"
+  ✓ "docker ps"
+  ✓ "docker images"
+  ✓ "show docker images"
+
+PACKAGE MANAGEMENT:
+  ✓ "list installed packages"
+  ✓ "pip list"
+  ✓ "npm list"
+  ✓ "show python packages"
+  ✓ "conda list"
+
+ENVIRONMENT:
+  ✓ "show environment variables"
+  ✓ "echo PATH"
+  ✓ "show python version"
+  ✓ "node version"
+  ✓ "which python"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚀 APPLICATION LAUNCHING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+FILE EXPLORER:
+  ✓ "open file explorer"
+  ✓ "open explorer"
+  ✓ "show file manager"
+  ✓ "open folder"
+
+WEB BROWSER:
+  ✓ "open browser"
+  ✓ "open chrome"
+  ✓ "open internet"
+  ✓ "launch browser"
+
+APPLICATIONS:
+  ✓ "open notepad"
+  ✓ "open calculator"
+  ✓ "launch terminal"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+❓ HELP & INFORMATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+GETTING HELP:
+  ✓ "help"
+  ✓ "what can you do"
+  ✓ "show commands"
+  ✓ "capabilities"
+  ✓ "what are your capabilities"
+  ✓ "how do I use this"
+  ✓ "show help"
+
+CONVERSATIONAL QUERIES:
+  ✓ "hello"
+  ✓ "hi"
+  ✓ "tell me about today"
+  ✓ "how are you"
+  
+  Note: These will get a friendly redirect to help showing available commands
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔒 SAFETY FEATURES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+COMMANDS THAT DON'T REQUIRE CONFIRMATION:
+  ✅ All read-only operations (listing, viewing, showing)
+  ✅ Network diagnostics (ping, traceroute, nslookup)
+  ✅ System information queries (CPU, memory, disk, uptime)
+  ✅ File searches and directory listings
+  ✅ Process listing (not killing)
+  ✅ IP/MAC address queries
+  ✅ Port checking
+
+COMMANDS THAT REQUIRE CONFIRMATION:
+  ⚠️ Deleting files or directories
+  ⚠️ Modifying system files
+  ⚠️ Killing processes
+  ⚠️ Formatting drives
+  ⚠️ Operations with sudo/admin privileges
+  ⚠️ Network operations that send/modify data
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💡 USAGE TIPS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BASIC USAGE:
+  python -m nlpcmd_ai.cli "your natural language command"
+
+INTERACTIVE MODE:
+  python -m nlpcmd_ai.cli -i
+  > what is my ip
+  > show disk usage
+  > exit
+
+AUTO-CONFIRM (Skip Prompts):
+  python -m nlpcmd_ai.cli --yes "your command"
+
+DRY RUN (Preview Without Executing):
+  python -m nlpcmd_ai.cli --dry-run "your command"
+
+CREATE SHORTCUT (Windows):
+  Create nlpai.bat:
+  @echo off
+  python -m nlpcmd_ai.cli %*
+  
+  Then use: nlpai "what is my ip"
+
+CREATE ALIAS (Linux/macOS):
+  Add to ~/.bashrc or ~/.zshrc:
+  alias nlpai='python -m nlpcmd_ai.cli'
+  
+  Then use: nlpai "what is my ip"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 EXAMPLE QUERIES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SIMPLE QUERIES:
+  "ip?"
+  "who I"
+  "disk?"
+  "cpu?"
+  "help"
+
+NATURAL LANGUAGE:
+  "what is my ip address"
+  "how much memory do I have"
+  "show me the disk usage"
+  "is port 8080 open on localhost"
+  "find all python files in this directory"
+
+COMPLEX QUERIES:
+  "show folders in C: drive"
+  "find files larger than 10MB"
+  "list all python processes"
+  "trace route to yahoo.com"
+  "where is the file named config.json"
+
+CONVERSATIONAL:
+  "what can you do"
+  "show me what commands you support"
+  "help me find a file"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔧 CONFIGURATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Create a .env file in your current directory:
+
+# AI Provider (required)
+NLP_PROVIDER=ollama  # or "openai" or "anthropic"
+
+# Provider-specific settings
+OLLAMA_MODEL=llama3.2
+OPENAI_API_KEY=your-key-here
+ANTHROPIC_API_KEY=your-key-here
+
+# Safety settings
+REQUIRE_CONFIRMATION=false  # Set to true for all confirmations
+
+# Logging
+LOG_COMMANDS=true
+LOG_FILE=~/.nlpcmd_ai/history.log
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🌟 PLATFORM SUPPORT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+WINDOWS:
+  ✅ All commands automatically use Windows syntax (dir, tasklist, etc.)
+  ✅ Pure Python - no PowerShell dependencies
+  ✅ Works in cmd.exe and PowerShell
+
+LINUX:
+  ✅ All commands automatically use Linux syntax (ls, ps, etc.)
+  ✅ Works in bash, zsh, and other shells
+  ✅ Supports both systemd and non-systemd systems
+
+macOS:
+  ✅ All commands automatically use macOS syntax
+  ✅ Works in Terminal and iTerm
+  ✅ Compatible with zsh and bash
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📚 ADDITIONAL RESOURCES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Documentation: https://github.com/Avikg/nlp_terminal_cmd#readme
+GitHub Issues: https://github.com/Avikg/nlp_terminal_cmd/issues
+PyPI Package: https://pypi.org/project/nlpcmd-ai/
+Installation: pip install nlpcmd-ai
+
+Version: 0.1.3
+Last Updated: December 2024
+Author: Avikg
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Note: This tool uses AI to interpret your commands. The AI will understand
+variations and similar phrasings of these commands. Don't worry about exact
+syntax - just ask naturally!
+
+If you find a command that should work but doesn't, please report it:
+https://github.com/Avikg/nlp_terminal_cmd/issues

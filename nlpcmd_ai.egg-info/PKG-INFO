@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: nlpcmd-ai
-Version: 0.1.2
+Version: 0.1.3
 Summary: AI-powered CLI assistant that understands natural language - transform plain English into system commands on Windows, Linux, and macOS
 Author-email: Avik <avikgreat@gmail.com>
 Maintainer-email: Avik <avikgreat@gmail.com>
@@ -81,11 +81,12 @@ Dynamic: license-file
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-blue.svg)](https://pypi.org/project/nlpcmd-ai/)
 [![GitHub](https://img.shields.io/badge/GitHub-nlp__terminal__cmd-blue?logo=github)](https://github.com/Avikg/nlp_terminal_cmd)
 
-> **Transform natural language into system commands with AI** 🚀
+> **Transform natural language into system commands with AI** 🚀  
+> **Current Version: 0.1.3**
 
 A **truly AI-powered** command-line assistant for **Windows, Linux, and macOS** that understands natural language and executes system commands intelligently. No more memorizing complex command syntax - just ask in plain English!
 
-Unlike traditional CLI tools with pattern matching, nlpcmd-ai uses **AI/LLM** (OpenAI, Anthropic Claude, or local Ollama) to understand complex, ambiguous commands and translate them into executable system operations - **automatically adapting commands to your operating system**.
+Unlike traditional CLI tools with pattern matching, nlpcmd-ai uses **AI/LLM** (OpenAI GPT-4, Anthropic Claude, or local Ollama) to understand complex, ambiguous commands and translate them into executable system operations - **automatically adapting commands to your operating system**.
 
 ## 📚 Links
 
@@ -97,7 +98,7 @@ Unlike traditional CLI tools with pattern matching, nlpcmd-ai uses **AI/LLM** (O
 ## ✨ Features
 
 - 🧠 **True Natural Language Understanding** - Uses AI models (OpenAI GPT-4, Anthropic Claude, or local Ollama)
-- 🔒 **Safe Execution** - Confirms dangerous operations before execution
+- 🔒 **Safe Execution** - Smart confirmation for dangerous operations only
 - 📝 **Context Awareness** - Remembers conversation history for follow-up commands
 - 🎯 **Intent Detection** - Automatically determines what you want to do
 - 🔧 **Extensible** - Easy to add custom command handlers
@@ -105,6 +106,7 @@ Unlike traditional CLI tools with pattern matching, nlpcmd-ai uses **AI/LLM** (O
 - 💬 **Interactive Mode** - Chat-like interface for complex workflows
 - 🆓 **100% Free Option** - Use with local Ollama (no API costs)
 - ⚡ **Fast & Efficient** - Powered by optimized AI models
+- 🐍 **Pure Python** - No PowerShell issues, works everywhere
 
 ## 🎬 Quick Start
 
@@ -214,6 +216,7 @@ Just ask naturally - the AI will understand!
 ```bash
 # System Information
 python -m nlpcmd_ai.cli "what is my ip"
+python -m nlpcmd_ai.cli "show mac address"
 python -m nlpcmd_ai.cli "how much memory do I have"
 python -m nlpcmd_ai.cli "show disk usage"
 python -m nlpcmd_ai.cli "what's my CPU usage"
@@ -224,14 +227,22 @@ python -m nlpcmd_ai.cli "who am I"
 python -m nlpcmd_ai.cli "list all python files"
 python -m nlpcmd_ai.cli "find files larger than 10MB"
 python -m nlpcmd_ai.cli "show directory structure"
+python -m nlpcmd_ai.cli "show folders in C:"
+python -m nlpcmd_ai.cli "find a.txt"
+python -m nlpcmd_ai.cli "where is config.json"
 
-# Network
+# Network Commands
 python -m nlpcmd_ai.cli "is port 8080 open"
 python -m nlpcmd_ai.cli "ping google.com"
+python -m nlpcmd_ai.cli "trace yahoo.com"
 
-# Development
-python -m nlpcmd_ai.cli "show git status"
-python -m nlpcmd_ai.cli "list docker containers"
+# Application Launching
+python -m nlpcmd_ai.cli "open file explorer"
+python -m nlpcmd_ai.cli "open browser"
+
+# Get Help
+python -m nlpcmd_ai.cli "help"
+python -m nlpcmd_ai.cli "what can you do"
 ```
 
 ### Interactive Mode (Recommended!)
@@ -248,6 +259,7 @@ Then chat naturally:
 > show disk usage
 > list python files in current directory
 > find files modified today
+> help
 > exit
 ```
 
@@ -294,30 +306,35 @@ nlpai -i
 ## 📋 Supported Commands
 
 ### System Information
-- CPU usage, memory info, disk space
-- System uptime, user info, hostname
-- Operating system details
+- **CPU usage, memory info, disk space** - "show CPU usage", "how much RAM"
+- **System uptime, user info, hostname** - "how long running", "who am I"
+- **Operating system details** - Windows, Linux, macOS
 
 ### Network Operations
-- IP address lookup (local & public)
-- Port checking and scanning
-- Network interface information
-- Ping and connectivity tests
+- **IP address lookup** - "what is my ip", "show mac address"
+- **Port checking** - "is port 8080 open"
+- **Network diagnostics** - "ping google.com", "trace yahoo.com"
+- **Connectivity tests** - Works without confirmation!
 
 ### File & Directory Operations
-- List, find, search files
-- Directory navigation
-- File information and statistics
+- **List files** - "list python files", "show folders in C:"
+- **Find files** - "find a.txt", "where is config.json"
+- **Directory navigation** - "show current folder", "folder structure"
+- **File search** - "search for *.py files"
 
 ### Process Management
-- List running processes
-- Find processes by name
-- Monitor system resources
+- **List running processes** - "show running processes"
+- **Find processes by name** - "is python running"
+- **Monitor system resources** - CPU, memory usage
 
-### Development Tools
-- Git operations
-- Docker commands
-- Package management (pip, npm)
+### Application Launching
+- **Open applications** - "open file explorer", "open browser"
+- **Launch programs** - Cross-platform support
+
+### Help & Information
+- **Get help** - "help", "what can you do"
+- **Show capabilities** - Lists all available commands
+- **Conversational queries** - Friendly redirects to help
 
 **See [SUPPORTED_COMMANDS.txt](SUPPORTED_COMMANDS.txt) for complete list**
 
@@ -344,11 +361,25 @@ LOG_FILE=~/.nlpcmd_ai/history.log
 
 ## 🛡️ Safety Features
 
-- ✅ Dangerous operations require confirmation (unless disabled)
+- ✅ Smart confirmation - Only dangerous operations require confirmation
+- ✅ Safe diagnostics - Network commands (ping, tracert) run without prompts
 - ✅ Dry-run mode to preview commands
 - ✅ Command logging for audit trail
 - ✅ Path validation for file operations
 - ✅ Protection against system directory access
+
+### Commands That Don't Need Confirmation:
+- ✅ Network diagnostics (ping, tracert, nslookup)
+- ✅ System info queries (CPU, memory, disk, uptime)
+- ✅ File searches and listings
+- ✅ Process listing
+- ✅ Read-only operations
+
+### Commands That Require Confirmation:
+- ⚠️ Deleting files/directories
+- ⚠️ Stopping processes
+- ⚠️ Modifying system files
+- ⚠️ Operations with sudo/admin privileges
 
 ## 🎯 Examples
 
@@ -379,16 +410,17 @@ Usage: 52.5%
 
 ### Example 2: File Management
 ```bash
-$ python -m nlpcmd_ai.cli "find all python files larger than 1MB"
+$ python -m nlpcmd_ai.cli "find all python files"
 
  📋 Category: file_operation
  ⚡ Action: find_files
- 💻 Command: find . -name "*.py" -size +1M
+ 💻 Command: dir /s /b *.py
 
-Found 3 files:
+Found 15 files:
 ./nlpcmd_ai/engine.py
-./tests/test_suite.py
-./examples/custom_handlers.py
+./nlpcmd_ai/handlers.py
+./nlpcmd_ai/cli.py
+...
 ```
 
 ### Example 3: Network Troubleshooting
@@ -398,9 +430,25 @@ $ python -m nlpcmd_ai.cli "what is my ip"
 Local IP: 192.168.1.100
 Public IP: 203.0.113.45
 
+$ python -m nlpcmd_ai.cli "show mac address"
+
+Network Interface MAC Addresses:
+Ethernet: 00-1A-2B-3C-4D-5E
+Wi-Fi: 00-1F-2E-3D-4C-5B
+
 $ python -m nlpcmd_ai.cli "is port 8080 open"
 
-Port 8080 on localhost: CLOSED
+❌ Port 8080 is CLOSED on localhost
+```
+
+### Example 4: File Search
+```bash
+$ python -m nlpcmd_ai.cli "where is config.json"
+
+ 💻 Command: dir /s /b config.json
+
+C:\Development\nlpcmd\config.json
+C:\Users\user\project\config.json
 ```
 
 ## 🔌 Extending nlpcmd-ai
@@ -432,332 +480,22 @@ See [examples/custom_handlers.py](examples/custom_handlers.py) for more examples
 | AI-Powered | ✅ Yes | ❌ No | ❌ No |
 | Interactive | ✅ Yes | ⚠️ Limited | ❌ No |
 | Extensible | ✅ Yes | ⚠️ Limited | ✅ Yes |
-
-## 🤝 Contributing
-
-Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-### Development Setup
-
-```bash
-# Clone repository
-git clone https://github.com/Avikg/nlp_terminal_cmd.git
-cd nlp_terminal_cmd
-
-# Install in development mode
-pip install -e .
-
-# Install development dependencies
-pip install -r requirements-dev.txt
-
-# Run tests
-pytest
-```
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Built with [OpenAI GPT](https://openai.com/), [Anthropic Claude](https://anthropic.com/), and [Ollama](https://ollama.ai/)
-- Uses [psutil](https://github.com/giampaolo/psutil) for system information
-- UI powered by [Rich](https://github.com/Textualize/rich)
-
-## 📞 Support
-
-- **Issues:** [GitHub Issues](https://github.com/Avikg/nlp_terminal_cmd/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/Avikg/nlp_terminal_cmd/discussions)
-- **PyPI:** [https://pypi.org/project/nlpcmd-ai/](https://pypi.org/project/nlpcmd-ai/)
-
-## 🌟 Star History
-
-If you find this project useful, please consider giving it a ⭐ on [GitHub](https://github.com/Avikg/nlp_terminal_cmd)!
-
----
-
-**Made with ❤️ by [Avikg](https://github.com/Avikg)**
-
-**Try it now:** `pip install nlpcmd-ai`
-
-#### Linux
-
-**Option 1: Using pip (Recommended)**
-```bash
-pip3 install nlpcmd-ai
-```
-
-**Option 2: Using installation script**
-```bash
-curl -O https://raw.githubusercontent.com/yourusername/nlpcmd-ai/main/install.sh
-bash install.sh
-```
-
-If `nlpai` not found, add to PATH:
-```bash
-export PATH="$HOME/.local/bin:$PATH"
-echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
-```
-
-#### macOS
-
-**Option 1: Using pip (Recommended)**
-```bash
-pip3 install nlpcmd-ai
-```
-
-**Option 2: Using installation script**
-```bash
-curl -O https://raw.githubusercontent.com/yourusername/nlpcmd-ai/main/install.sh
-bash install.sh
-```
-
-### Advanced Installation
-
-#### With Local LLM Support (Ollama)
-
-```bash
-pip install nlpcmd-ai[local]
-```
-
-#### From Source (Developers)
-
-```bash
-git clone https://github.com/yourusername/nlpcmd-ai.git
-cd nlpcmd-ai
-pip install -e .
-```
-
-#### All Optional Dependencies
-
-```bash
-pip install nlpcmd-ai[all]
-```
-
-## ⚙️ Configuration
-
-Create a `.env` file or set environment variables:
-
-```bash
-# Choose your AI provider (openai, anthropic, or ollama)
-NLP_PROVIDER=openai
-
-# API Keys (if using cloud providers)
-OPENAI_API_KEY=sk-...
-ANTHROPIC_API_KEY=sk-ant-...
-
-# Ollama settings (if using local)
-OLLAMA_MODEL=llama3.2
-OLLAMA_HOST=http://localhost:11434
-
-# Safety settings
-REQUIRE_CONFIRMATION=true
-DRY_RUN_MODE=false
-LOG_COMMANDS=true
-```
-
-## 📖 Usage Examples
-
-### One-off Commands
-
-```bash
-# Simple commands
-nlpai "what is my ip address"
-nlpai "show me disk usage"
-nlpai "find all python files in this directory"
-
-# Complex operations
-nlpai "find all python files larger than 1MB modified in the last week"
-nlpai "compress all log files from last month and move them to archive folder"
-nlpai "show me the top 5 processes using most CPU"
-
-# Development tasks
-nlpai "create a git branch called feature/user-auth"
-nlpai "install the requests library and add it to requirements.txt"
-nlpai "run my tests and show me only the failures"
-
-# File operations
-nlpai "rename all .jpeg files to .jpg in the current folder"
-nlpai "create a backup of all my python files"
-nlpai "delete all cache folders recursively"
-
-# Network operations
-nlpai "check if port 8080 is open"
-nlpai "download the file from this url and save it as data.json"
-nlpai "what's the response time for google.com"
-```
-
-### Interactive Mode
-
-```bash
-nlpai
-
-> show me the current directory
-📁 Current directory: /home/user/projects
-
-> list all python files
-📄 Found 15 Python files:
-  - main.py
-  - utils.py
-  ...
-
-> show me the size of the largest one
-📊 main.py: 15.3 KB
-
-> open it in vim
-✅ Opening main.py in vim...
-
-> exit
-👋 Goodbye!
-```
-
-### Conversation History
-
-The AI remembers context within a session:
-
-```bash
-nlpai "create a folder called my_project"
-nlpai "go into it"  # Remembers "my_project" from previous command
-nlpai "create a python file named main.py"
-nlpai "add a hello world function to it"  # Knows which file you're referring to
-```
-
-## 🎯 Supported Command Categories
-
-### System Operations
-- File and directory management
-- Process management
-- System information
-- User management
-- Environment variables
-
-### Network Operations
-- IP address information
-- Port scanning
-- Network connectivity tests
-- DNS lookups
-- HTTP requests
-
-### Development Tools
-- Git operations
-- Package management (pip, npm, etc.)
-- Docker commands
-- Code formatting/linting
-- Test execution
-
-### Data Processing
-- CSV/JSON manipulation
-- Text file operations
-- Data transformation
-- Batch file operations
-
-### Custom Extensions
-- Plugin system for custom handlers
-- Easy to add domain-specific commands
-
-## 🔒 Safety Features
-
-### Confirmation Prompts
-Dangerous operations require confirmation:
-
-```bash
-nlpai "delete all files in /tmp"
-
-⚠️  WARNING: This will delete files
-Command: rm -rf /tmp/*
-Execute? [y/N]:
-```
-
-### Dry Run Mode
-Test commands without executing:
-
-```bash
-nlpai --dry-run "remove all .pyc files"
-
-🔍 DRY RUN MODE
-Would execute: find . -name "*.pyc" -delete
-Affected files: 23 files
-```
-
-### Command Logging
-All executed commands are logged:
-
-```bash
-cat ~/.nlpcmd_ai/history.log
-
-2025-01-15 10:23:45 | User: "show my ip" | Executed: ip addr show
-2025-01-15 10:24:12 | User: "delete old logs" | Executed: rm logs/*.log.old
-```
-
-## 🛠️ Advanced Usage
-
-### Custom Handlers
-
-Add your own command handlers:
-
-```python
-# ~/.nlpcmd_ai/handlers/custom.py
-
-from nlpcmd_ai.handlers.base import BaseHandler
-
-class MyCustomHandler(BaseHandler):
-    def can_handle(self, intent: str, params: dict) -> bool:
-        return intent == "deploy_app"
-    
-    def execute(self, params: dict) -> str:
-        # Your custom deployment logic
-        return "Deployment successful!"
-```
-
-### Configuration File
-
-Advanced settings in `~/.nlpcmd_ai/config.yaml`:
-
-```yaml
-ai:
-  provider: openai
-  model: gpt-4-turbo-preview
-  temperature: 0.3
-  
-safety:
-  require_confirmation: true
-  dangerous_patterns:
-    - "rm -rf"
-    - "dd if="
-    - "mkfs"
-  allowed_directories:
-    - "/home/user"
-    - "/tmp"
-    
-logging:
-  level: INFO
-  file: ~/.nlpcmd_ai/nlpcmd.log
-  
-handlers:
-  custom_path: ~/.nlpcmd_ai/handlers
-```
-
-## 🔄 How It Works
-
-1. **Natural Language Input** → User types command in plain English
-2. **AI Processing** → LLM analyzes intent and extracts parameters
-3. **Intent Classification** → Determines command category
-4. **Handler Selection** → Routes to appropriate handler
-5. **Command Generation** → Creates safe, executable command
-6. **Safety Check** → Validates and optionally asks for confirmation
-7. **Execution** → Runs command and captures output
-8. **Response** → Formats and displays result to user
-
-## 📊 Comparison with Traditional CLI Tools
-
-| Feature | Traditional CLI | nlpcmd-ai |
-|---------|----------------|-----------|
-| Input Style | Exact syntax required | Natural language |
-| Learning Curve | Steep | Minimal |
-| Flexibility | Limited to defined patterns | Understands variations |
-| Context Awareness | None | Full conversation history |
-| Error Handling | Cryptic errors | Helpful explanations |
-| Discovery | Man pages/help flags | Just ask what you want |
+| No PowerShell Issues | ✅ Yes | ❌ Varies | ❌ Varies |
+
+## 🆕 What's New in v0.1.3
+
+- ✅ Fixed MAC address retrieval using Python (psutil)
+- ✅ Improved port checking with better parameter extraction
+- ✅ Extended timeout for network commands (ping, tracert) - 120 seconds
+- ✅ Removed confirmation prompts for safe diagnostic commands
+- ✅ Better file search with `dir /s /b` pattern
+- ✅ Help handler for conversational queries
+- ✅ Application launching support (file explorer, browser)
+- ✅ Enhanced AI prompt for better path handling
+- ✅ All system info commands use Python (no PowerShell dependencies)
+- ✅ Smart confirmation - only dangerous operations require confirmation
+- ✅ Fixed action parameter passing to handlers
+- ✅ Improved current directory vs specific path handling
 
 ## 🤝 Contributing
 
