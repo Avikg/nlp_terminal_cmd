@@ -465,7 +465,7 @@ If you find this project useful, please consider giving it a ⭐ on [GitHub](htt
 
 ---
 
-**Made with ❤️ by [Avikg](https://github.com/Avikg)**
+**Made with ❤️ by [Avikg](https://github.com/Avikg) and [Abhinandan](https://github.com/abhinandan12345678)**
 
 **Try it now:** `pip install nlpcmd-ai`
 
